@@ -464,10 +464,12 @@ export default function HomePage() {
           <p className="text-white/30 text-sm">
             &copy; 2026 Penterra Analytics Private Limited. All rights reserved.
           </p>
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-6 flex-wrap">
             <a href="#faq" className="text-white/30 hover:text-white/60 text-sm transition-colors">FAQ</a>
+            <a href="/contact" className="text-white/30 hover:text-white/60 text-sm transition-colors">Contact</a>
+            <a href="/terms" className="text-white/30 hover:text-white/60 text-sm transition-colors">Terms</a>
+            <a href="/refunds" className="text-white/30 hover:text-white/60 text-sm transition-colors">Refunds</a>
             <a href="https://penterra.in" target="_blank" rel="noopener noreferrer" className="text-white/30 hover:text-white/60 text-sm transition-colors">penterra.in</a>
-            <a href="https://forge.penterra.in" target="_blank" rel="noopener noreferrer" className="text-white/30 hover:text-white/60 text-sm transition-colors">Penterra Forge</a>
           </div>
         </div>
       </footer>
