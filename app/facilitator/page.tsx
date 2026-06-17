@@ -107,7 +107,7 @@ export default function FacilitatorPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8">
             <div>
               <p className="text-white/40 text-xs uppercase tracking-wider mb-3">Technical</p>
-              <Check>Test screen share on Zoom/Meet — participants must see your terminal clearly</Check>
+              <Check>Test screen share on Google Meet — participants must see your terminal clearly</Check>
               <Check>Confirm all 5 GitHub repos are public and cloneable</Check>
               <Check>Test Claude Code from scratch on a fresh project</Check>
               <Check>Have a Vercel account ready to demo deployment</Check>

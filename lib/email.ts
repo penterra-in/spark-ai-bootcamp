@@ -11,7 +11,7 @@ const DARK    = "#263547";
 const COHORT  = process.env.NEXT_PUBLIC_COHORT_NUMBER ?? "1";
 const DATE_DISPLAY = "June 26, 2026";
 const PRE_SESSION  = "June 25, 2026 at 7:00 PM IST";
-const VENUE        = process.env.NEXT_PUBLIC_VENUE ?? "Online — join link will be sent to your email 24 hours before the bootcamp.";
+const VENUE        = process.env.NEXT_PUBLIC_VENUE ?? "Online via Google Meet. You will receive both links on the morning of June 25 — one for the pre-bootcamp setup session (June 25 at 7:00 PM IST) and one for the main bootcamp day (June 26 at 10:00 AM IST).";
 const SESSION_REPO = "https://github.com/penterra-in/spark-session-00-day-zero-prep";
 
 function base(content: string): string {
@@ -76,7 +76,7 @@ export async function sendWelcomeEmail({
     ["1", "Open the Day Zero Setup Guide", `Clone <a href="${SESSION_REPO}" style="color:${B};">${SESSION_REPO}</a> and follow the README step by step.`],
     ["2", "Install Claude Code", "Follow the guide to install Claude Code via your Claude Pro subscription. This is the tool you will build with on the day."],
     ["3", "Install Git", "Git is how you will download and share your projects. The guide has step-by-step instructions for Mac and Windows."],
-    ["4", "Join the pre-bootcamp session", `Optional but recommended: ${PRE_SESSION}. We will install everything together and make sure you are 100% ready. Zoom link will be sent separately.`],
+    ["4", "Join the pre-bootcamp session", `Optional but recommended: ${PRE_SESSION}. We will install everything together and make sure you are 100% ready. Your Google Meet link for this session will be sent on the morning of June 25.`],
   ];
 
   const content = `
