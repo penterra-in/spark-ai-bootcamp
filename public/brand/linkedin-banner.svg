@@ -1,0 +1,60 @@
+<svg width="1584" height="396" viewBox="0 0 1584 396" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1584" height="396" fill="#0A0F1A"/>
+
+  <!-- Horizontal grid lines -->
+  <line x1="0" y1="99" x2="1584" y2="99" stroke="rgba(30,157,217,0.05)" stroke-width="1"/>
+  <line x1="0" y1="198" x2="1584" y2="198" stroke="rgba(30,157,217,0.05)" stroke-width="1"/>
+  <line x1="0" y1="297" x2="1584" y2="297" stroke="rgba(30,157,217,0.05)" stroke-width="1"/>
+  <!-- Vertical grid lines -->
+  <line x1="264" y1="0" x2="264" y2="396" stroke="rgba(30,157,217,0.05)" stroke-width="1"/>
+  <line x1="528" y1="0" x2="528" y2="396" stroke="rgba(30,157,217,0.05)" stroke-width="1"/>
+  <line x1="792" y1="0" x2="792" y2="396" stroke="rgba(30,157,217,0.05)" stroke-width="1"/>
+  <line x1="1056" y1="0" x2="1056" y2="396" stroke="rgba(30,157,217,0.05)" stroke-width="1"/>
+  <line x1="1320" y1="0" x2="1320" y2="396" stroke="rgba(30,157,217,0.05)" stroke-width="1"/>
+
+  <!-- Left glow -->
+  <radialGradient id="leftGlow" cx="0%" cy="50%" r="60%">
+    <stop offset="0%" stop-color="#1E9DD9" stop-opacity="0.22"/>
+    <stop offset="100%" stop-color="#1E9DD9" stop-opacity="0"/>
+  </radialGradient>
+  <rect width="1584" height="396" fill="url(#leftGlow)"/>
+
+  <!-- Right glow (subtle) -->
+  <radialGradient id="rightGlow" cx="100%" cy="50%" r="40%">
+    <stop offset="0%" stop-color="#1E9DD9" stop-opacity="0.08"/>
+    <stop offset="100%" stop-color="#1E9DD9" stop-opacity="0"/>
+  </radialGradient>
+  <rect width="1584" height="396" fill="url(#rightGlow)"/>
+
+  <!-- Logo group — left section -->
+  <!-- Icon background -->
+  <rect x="80" y="130" width="90" height="90" rx="18" fill="#1E9DD9"/>
+  <!-- Lightning bolt in icon -->
+  <path d="M115 144L95 174H108L104 210L128 176H115L115 144Z" fill="white"/>
+  <!-- Wordmark -->
+  <text x="186" y="192" font-family="'Poppins', 'Inter', system-ui, sans-serif" font-weight="800" font-size="64" letter-spacing="-1.5" fill="white">Spark</text>
+  <!-- Sub-text -->
+  <text x="188" y="220" font-family="'Inter', system-ui, sans-serif" font-weight="400" font-size="18" letter-spacing="2" fill="rgba(255,255,255,0.4)">AI BOOTCAMP  ·  by Penterra AI</text>
+
+  <!-- Vertical divider -->
+  <rect x="530" y="100" width="1.5" height="196" rx="1" fill="rgba(30,157,217,0.2)"/>
+
+  <!-- Right section — event details -->
+  <text x="590" y="172" font-family="'Inter', system-ui, sans-serif" font-weight="700" font-size="22" letter-spacing="3" fill="rgba(30,157,217,0.9)">COHORT 1</text>
+  <text x="590" y="228" font-family="'Poppins', 'Inter', system-ui, sans-serif" font-weight="700" font-size="44" letter-spacing="-0.5" fill="white">June 26, 2026</text>
+  <text x="590" y="270" font-family="'Inter', system-ui, sans-serif" font-weight="400" font-size="20" fill="rgba(255,255,255,0.5)">1 day · Online · Build 2 real AI products</text>
+
+  <!-- Far right — pill badges -->
+  <rect x="1240" y="128" width="264" height="44" rx="22" fill="rgba(30,157,217,0.12)" stroke="rgba(30,157,217,0.3)" stroke-width="1.5"/>
+  <text x="1372" y="156" font-family="'Inter', system-ui, sans-serif" font-weight="600" font-size="16" fill="#1E9DD9" text-anchor="middle">₹2,999 · 10 seats</text>
+
+  <rect x="1240" y="188" width="264" height="44" rx="22" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/>
+  <text x="1372" y="216" font-family="'Inter', system-ui, sans-serif" font-weight="500" font-size="16" fill="rgba(255,255,255,0.6)" text-anchor="middle">sparkaibootcamp.com</text>
+
+  <rect x="1240" y="248" width="264" height="44" rx="22" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/>
+  <text x="1372" y="276" font-family="'Inter', system-ui, sans-serif" font-weight="500" font-size="16" fill="rgba(255,255,255,0.6)" text-anchor="middle">No code · No tech team</text>
+
+  <!-- Bottom accent line -->
+  <rect x="0" y="390" width="1584" height="6" fill="#1E9DD9" opacity="0.7"/>
+</svg>

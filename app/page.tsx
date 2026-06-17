@@ -67,8 +67,10 @@ export default function HomePage() {
       <header className="sticky top-0 z-50 bg-[#0A0F1A]/95 backdrop-blur-sm border-b border-white/10">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 bg-[#1E9DD9] rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-base leading-none" style={{ fontFamily: "Poppins, sans-serif" }}>S</span>
+            <div className="w-8 h-8 bg-[#1E9DD9] rounded-lg flex items-center justify-center flex-shrink-0">
+              <svg width="18" height="22" viewBox="0 0 18 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M11 1L2 12H7.5L5 21L16 9H10.5L11 1Z" fill="white"/>
+              </svg>
             </div>
             <span className="font-bold text-lg" style={{ fontFamily: "Poppins, sans-serif" }}>
               Spark <span className="text-white/40 font-normal text-sm">by Penterra AI</span>
@@ -303,12 +305,30 @@ export default function HomePage() {
           <div className="max-w-3xl mx-auto bg-white/5 border border-white/10 rounded-3xl p-8 sm:p-10">
             <p className="text-white/40 text-xs font-semibold uppercase tracking-wider mb-6">Your facilitator</p>
             <div className="flex flex-col sm:flex-row gap-6 items-start">
-              <div className="w-16 h-16 bg-[#1E9DD9] rounded-2xl flex items-center justify-center flex-shrink-0">
-                <span className="text-white font-bold text-2xl" style={{ fontFamily: "Poppins, sans-serif" }}>D</span>
-              </div>
+              <img
+                src="/david.png"
+                alt="David Paul M"
+                width={80}
+                height={80}
+                className="rounded-2xl object-cover flex-shrink-0"
+                style={{ width: 80, height: 80 }}
+              />
               <div>
-                <h3 className="font-bold text-xl text-white mb-1" style={{ fontFamily: "Poppins, sans-serif" }}>David Paul M</h3>
-                <p className="text-[#1E9DD9] text-sm mb-4">Founder, Penterra AI</p>
+                <h3 className="font-bold text-xl text-white mb-0.5" style={{ fontFamily: "Poppins, sans-serif" }}>David Paul M</h3>
+                <div className="flex items-center gap-3 mb-4">
+                  <p className="text-[#1E9DD9] text-sm">Founder, Penterra AI</p>
+                  <a
+                    href="https://www.linkedin.com/in/david-paul-m-b88080243/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-white/40 hover:text-[#1E9DD9] text-xs transition-colors"
+                  >
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                    LinkedIn
+                  </a>
+                </div>
                 <p className="text-white/60 text-sm leading-relaxed mb-4">
                   90 days ago, I could not build a single AI product. Today I have shipped 4 AI-native products across different domains &mdash; an AI content system, an AI course platform, a GCC advisory platform, and several client builds &mdash; all without a technical co-founder or an engineering team.
                 </p>
