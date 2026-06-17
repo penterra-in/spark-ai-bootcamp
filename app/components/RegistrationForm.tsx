@@ -2,6 +2,28 @@
 import { useState, FormEvent } from "react";
 
 const MAX_SEATS = parseInt(process.env.NEXT_PUBLIC_MAX_SEATS ?? "10");
+const CF_MODE   = process.env.NEXT_PUBLIC_CASHFREE_ENV === "PROD" ? "production" : "sandbox";
+
+async function loadCashfreeAndCheckout(paymentSessionId: string): Promise<void> {
+  return new Promise((resolve, reject) => {
+    if (document.getElementById("cashfree-sdk")) {
+      initCheckout(paymentSessionId).then(resolve).catch(reject);
+      return;
+    }
+    const script = document.createElement("script");
+    script.id  = "cashfree-sdk";
+    script.src = "https://sdk.cashfree.com/js/v3/cashfree.js";
+    script.onload = () => initCheckout(paymentSessionId).then(resolve).catch(reject);
+    script.onerror = () => reject(new Error("Failed to load payment SDK"));
+    document.head.appendChild(script);
+  });
+}
+
+async function initCheckout(paymentSessionId: string): Promise<void> {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const cashfree = await (window as any).Cashfree({ mode: CF_MODE });
+  cashfree.checkout({ paymentSessionId, redirectTarget: "_self" });
+}
 
 interface FormData {
   fullName: string;
@@ -40,14 +62,15 @@ export default function RegistrationForm({ seatsLeft }: { seatsLeft?: number }) 
         body: JSON.stringify(form),
       });
 
-      const json = await res.json() as { link_url?: string; error?: string };
+      const json = await res.json() as { payment_session_id?: string; error?: string };
 
-      if (!res.ok || !json.link_url) {
+      if (!res.ok || !json.payment_session_id) {
         setError(json.error ?? "Something went wrong. Please try again.");
         return;
       }
 
-      window.location.href = json.link_url;
+      // Load Cashfree JS SDK and launch checkout
+      await loadCashfreeAndCheckout(json.payment_session_id);
     } catch {
       setError("Network error. Please check your connection and try again.");
     } finally {

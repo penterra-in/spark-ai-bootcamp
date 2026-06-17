@@ -3,22 +3,23 @@ import { NextResponse } from "next/server";
 import { createHmac } from "crypto";
 import { sendWelcomeEmail, sendAdminNotification } from "@/lib/email";
 
-function verifySignature(rawBody: string, received: string): boolean {
+function verifySignature(rawBody: string, timestamp: string, received: string): boolean {
   const secret = process.env.CASHFREE_SECRET_KEY;
-  if (!secret) return true; // allow in dev without key
+  if (!secret) return true;
 
   const expected = createHmac("sha256", secret)
-    .update(rawBody)
+    .update(timestamp + rawBody)
     .digest("base64");
 
   return expected === received;
 }
 
 export async function POST(req: Request) {
-  const rawBody = await req.text();
-  const sig     = req.headers.get("x-cashfree-signature") ?? "";
+  const rawBody   = await req.text();
+  const sig       = req.headers.get("x-webhook-signature")  ?? "";
+  const timestamp = req.headers.get("x-webhook-timestamp")  ?? "";
 
-  if (!verifySignature(rawBody, sig)) {
+  if (!verifySignature(rawBody, timestamp, sig)) {
     console.error("[cashfree webhook] invalid signature");
     return NextResponse.json({ error: "Invalid signature" }, { status: 401 });
   }
@@ -31,22 +32,24 @@ export async function POST(req: Request) {
   }
 
   const { type, data } = payload;
-  console.log("[cashfree webhook] event:", type, "link:", data?.link_id, "status:", data?.link_status);
+  console.log("[cashfree webhook] event:", type, "order:", data?.order?.order_id);
 
-  if (type !== "PAYMENT_LINK_EVENT" || data?.link_status !== "PAID") {
+  // Only process successful payments
+  if (type !== "PAYMENT_SUCCESS_WEBHOOK") {
     return NextResponse.json({ ok: true });
   }
 
-  const { customer_details, link_notes, link_id, order, link_amount_paid } = data;
-  const name        = customer_details?.customer_name?.trim() ?? "there";
-  const email       = customer_details?.customer_email ?? "";
-  const phone       = customer_details?.customer_phone ?? "";
-  const orderId     = link_id ?? order?.order_id ?? "";
-  const amount      = parseFloat(link_amount_paid ?? order?.order_amount ?? "0");
-  const company     = link_notes?.company     ?? "";
-  const jobFunction = link_notes?.jobFunction ?? "";
-  const linkedinUrl = link_notes?.linkedinUrl ?? "";
-  const roleSummary = link_notes?.roleSummary ?? "";
+  const { customer_details, order, payment } = data;
+  const name        = customer_details?.customer_name?.trim()  ?? "there";
+  const email       = customer_details?.customer_email         ?? "";
+  const phone       = customer_details?.customer_phone         ?? "";
+  const orderId     = order?.order_id                          ?? "";
+  const amount      = payment?.payment_amount                  ?? 0;
+  const tags        = order?.order_tags                        ?? {};
+  const company     = tags.company                             ?? "";
+  const jobFunction = tags.jobFunction                         ?? "";
+  const linkedinUrl = tags.linkedinUrl                         ?? "";
+  const roleSummary = tags.roleSummary                         ?? "";
 
   if (!email) {
     console.error("[cashfree webhook] no email in payload");
@@ -69,11 +72,20 @@ export async function POST(req: Request) {
 interface CashfreePayload {
   type: string;
   data: {
-    link_id?: string;
-    link_status: string;
-    link_amount_paid?: string;
-    customer_details: { customer_name?: string; customer_email?: string; customer_phone?: string };
-    link_notes?: Record<string, string>;
-    order: { order_id: string; order_amount: string };
+    order: {
+      order_id:     string;
+      order_amount: number;
+      order_tags?:  Record<string, string>;
+    };
+    payment: {
+      cf_payment_id:   number;
+      payment_status:  string;
+      payment_amount:  number;
+    };
+    customer_details: {
+      customer_name?:  string;
+      customer_email?: string;
+      customer_phone?: string;
+    };
   };
 }

@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
-import { createBootcampPaymentLink } from "@/lib/cashfree";
+import { createBootcampOrder } from "@/lib/cashfree";
 
 export const dynamic = "force-dynamic";
 
@@ -30,15 +30,13 @@ export async function POST(req: Request) {
     );
   }
 
-  const data = parsed.data;
-
   try {
-    const { link_url } = await createBootcampPaymentLink(data);
-    return NextResponse.json({ link_url });
+    const { payment_session_id, order_id } = await createBootcampOrder(parsed.data);
+    return NextResponse.json({ payment_session_id, order_id });
   } catch (err) {
     console.error("[register] Cashfree error:", err);
     return NextResponse.json(
-      { error: "Could not create payment link. Please try again or contact us." },
+      { error: "Could not create order. Please try again or contact us." },
       { status: 500 }
     );
   }
