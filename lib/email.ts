@@ -171,6 +171,62 @@ export async function sendWelcomeEmail({
   });
 }
 
+const STAR_RATINGS: Record<number, string> = {
+  1: "★☆☆☆☆ — It was rough",
+  2: "★★☆☆☆ — Below expectations",
+  3: "★★★☆☆ — Met expectations",
+  4: "★★★★☆ — Exceeded expectations",
+  5: "★★★★★ — Life-changing",
+};
+
+export async function sendFeedbackNotification(data: {
+  name: string; company: string; role: string; email: string;
+  rating: number; biggestWin: string; testimonial: string;
+  recommend: string; linkedinUrl: string; permissionToShare: boolean;
+}) {
+  const adminEmail = process.env.ADMIN_EMAIL ?? "david@penterra.in";
+  const permLabel = data.permissionToShare
+    ? `<span style="color:#166534;font-weight:700;">YES — can share publicly</span>`
+    : `<span style="color:#9A3412;">No — do not publish</span>`;
+
+  const stars = "★".repeat(data.rating) + "☆".repeat(5 - data.rating);
+
+  const content = `
+    <h1 style="margin:0 0 4px;font-size:22px;font-weight:800;color:${DARK};">New Spark Feedback — ${data.name}</h1>
+    <p style="margin:0 0 24px;font-size:14px;color:#64748B;">${data.role} · ${data.company} · ${data.email}</p>
+
+    <!-- Rating -->
+    <div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:10px;padding:20px 24px;margin-bottom:24px;text-align:center;">
+      <p style="margin:0 0 4px;font-size:28px;color:${B};letter-spacing:2px;">${stars}</p>
+      <p style="margin:0;font-size:14px;font-weight:700;color:${DARK};">${STAR_RATINGS[data.rating] ?? ""}</p>
+    </div>
+
+    <table width="100%" cellpadding="0" cellspacing="0" style="border:1px solid #E2E8F0;border-radius:10px;overflow:hidden;margin-bottom:24px;">
+      ${[
+        ["Biggest win today", data.biggestWin],
+        ["Testimonial", data.testimonial],
+        ["Would recommend?", data.recommend],
+        ["LinkedIn", data.linkedinUrl || "—"],
+        ["Permission to share", permLabel],
+      ].map(([label, value]) => `
+      <tr style="border-bottom:1px solid #E2E8F0;">
+        <td style="padding:14px 16px;font-size:12px;font-weight:700;color:#94A3B8;text-transform:uppercase;width:160px;background:#F8FAFC;vertical-align:top;">${label}</td>
+        <td style="padding:14px 16px;font-size:14px;color:${DARK};line-height:1.6;word-break:break-word;">${value}</td>
+      </tr>`).join("")}
+    </table>
+
+    <p style="margin:0;font-size:13px;color:#94A3B8;text-align:center;">Spark Bootcamp Cohort ${COHORT} · Feedback submission</p>
+  `;
+
+  return getResend().emails.send({
+    from:    FROM,
+    replyTo: data.email,
+    to:      adminEmail,
+    subject: `Spark Feedback — ${data.name} (${data.company}) — ${STAR_RATINGS[data.rating] ?? `${data.rating}/5`}`,
+    html:    base(content),
+  });
+}
+
 export async function sendAdminNotification({
   name, company, jobFunction, email, phone, linkedinUrl, roleSummary, orderId, amount,
 }: {
