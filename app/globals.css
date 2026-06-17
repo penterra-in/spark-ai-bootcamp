@@ -1,0 +1,35 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap");
+@import "tailwindcss";
+
+:root {
+  --font-heading: "Poppins", system-ui, sans-serif;
+  --font-body:    "Inter", system-ui, sans-serif;
+  --blue:         #1E9DD9;
+  --dark:         #0A0F1A;
+  --dark2:        #263547;
+}
+
+body {
+  font-family: var(--font-body);
+  background: #0A0F1A;
+  color: #fff;
+  margin: 0;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+}
+
+/* Smooth scroll for anchor links */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Form inputs */
+input, textarea, select {
+  outline: none;
+}
+
+input:focus, textarea:focus {
+  box-shadow: 0 0 0 2px #1E9DD9;
+}
