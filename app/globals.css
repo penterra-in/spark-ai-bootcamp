@@ -20,16 +20,65 @@ h1, h2, h3, h4 {
   font-family: var(--font-heading);
 }
 
-/* Smooth scroll for anchor links */
-html {
-  scroll-behavior: smooth;
+html { scroll-behavior: smooth; }
+
+input, textarea, select { outline: none; }
+input:focus, textarea:focus { box-shadow: 0 0 0 2px #1E9DD9; }
+
+/* ── Scroll-triggered reveal ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+
+/* ── Terminal line animation ── */
+@keyframes termLine {
+  from { opacity: 0; transform: translateX(-6px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+.term-line {
+  opacity: 0;
+  animation: termLine 0.25s ease-out forwards;
 }
 
-/* Form inputs */
-input, textarea, select {
-  outline: none;
+/* ── Gradient orb pulse ── */
+@keyframes orbFloat {
+  0%,100% { transform: translate(0, 0) scale(1); }
+  33%      { transform: translate(40px, -30px) scale(1.08); }
+  66%      { transform: translate(-25px, 20px) scale(0.95); }
 }
+.orb { animation: orbFloat 12s ease-in-out infinite; }
+.orb-slow { animation: orbFloat 18s ease-in-out infinite reverse; }
 
-input:focus, textarea:focus {
-  box-shadow: 0 0 0 2px #1E9DD9;
+/* ── Cursor blink ── */
+@keyframes blink {
+  0%,100% { opacity: 1; }
+  50%      { opacity: 0; }
+}
+.cursor { animation: blink 1s step-end infinite; }
+
+/* ── Chat bubble pop-in ── */
+@keyframes bubblePop {
+  from { opacity: 0; transform: translateY(8px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+.bubble { opacity: 0; animation: bubblePop 0.3s ease-out forwards; }
+
+/* ── Shimmer on badges ── */
+@keyframes shimmer {
+  from { background-position: -200% center; }
+  to   { background-position: 200% center; }
+}
+.shimmer-badge {
+  background: linear-gradient(90deg, rgba(30,157,217,0.08) 25%, rgba(30,157,217,0.2) 50%, rgba(30,157,217,0.08) 75%);
+  background-size: 200% auto;
+  animation: shimmer 3s linear infinite;
 }

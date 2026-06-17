@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import FaqAccordion from "./components/FaqAccordion";
 import RegistrationForm from "./components/RegistrationForm";
 import CountdownTimer from "./components/CountdownTimer";
+import TerminalWindow from "./components/TerminalWindow";
+import { WebsiteMockup, ChatMockup } from "./components/ProductMockups";
+import RevealSection from "./components/RevealSection";
 
 export const metadata: Metadata = {
   title: "Spark — 1-Day AI Build Bootcamp for Professionals | June 26",
@@ -88,104 +91,154 @@ export default function HomePage() {
       <main>
 
         {/* Hero */}
-        <section className="max-w-6xl mx-auto px-4 sm:px-6 pt-20 pb-16 text-center">
+        <section className="relative max-w-6xl mx-auto px-4 sm:px-6 pt-16 pb-12 overflow-hidden">
+          {/* Gradient orbs */}
+          <div className="orb absolute -top-20 -left-20 w-96 h-96 rounded-full pointer-events-none"
+            style={{ background: "radial-gradient(circle, rgba(30,157,217,0.18) 0%, transparent 70%)" }} />
+          <div className="orb-slow absolute -bottom-10 -right-10 w-80 h-80 rounded-full pointer-events-none"
+            style={{ background: "radial-gradient(circle, rgba(30,157,217,0.12) 0%, transparent 70%)" }} />
 
-          <div className="inline-flex items-center gap-2 bg-[#1E9DD9]/10 border border-[#1E9DD9]/30 rounded-full px-4 py-1.5 mb-8">
-            <span className="w-2 h-2 bg-[#1E9DD9] rounded-full animate-pulse inline-block" />
-            <span className="text-[#1E9DD9] text-sm font-medium">June 26 &mdash; 10 seats &mdash; Cohort 1</span>
-          </div>
+          <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+            {/* Left — text */}
+            <div>
+              <div className="inline-flex items-center gap-2 bg-[#1E9DD9]/10 border border-[#1E9DD9]/30 rounded-full px-4 py-1.5 mb-7">
+                <span className="w-2 h-2 bg-[#1E9DD9] rounded-full animate-pulse inline-block" />
+                <span className="text-[#1E9DD9] text-sm font-medium">June 26 &mdash; 10 seats &mdash; Cohort 1</span>
+              </div>
 
-          <h1 className="font-bold text-4xl sm:text-5xl md:text-6xl leading-tight mb-6" style={{ fontFamily: "Poppins, sans-serif" }}>
-            Stop watching demos.{" "}
-            <span className="text-[#1E9DD9]">Start building.</span>
-          </h1>
+              <h1 className="font-bold text-4xl sm:text-5xl leading-tight mb-5" style={{ fontFamily: "Poppins, sans-serif" }}>
+                Stop watching demos.{" "}
+                <span className="text-[#1E9DD9]">Start building.</span>
+              </h1>
 
-          <p className="text-white/70 text-lg sm:text-xl max-w-2xl mx-auto mb-4 leading-relaxed">
-            Spark is a 1-day hands-on AI bootcamp where non-technical professionals build and ship
-            2 real AI products. You leave with a live website and a live AI tool &mdash; both deployed.
-          </p>
+              <p className="text-white/70 text-lg mb-3 leading-relaxed">
+                Spark is a 1-day hands-on AI bootcamp where non-technical professionals build and ship
+                2 real AI products. You leave with a live website and a live AI tool &mdash; both deployed.
+              </p>
 
-          <p className="text-white/50 text-base max-w-xl mx-auto mb-8">
-            No code. No tech background. Just Claude Code, a laptop, and 8 focused hours.
-          </p>
+              <p className="text-white/40 text-sm mb-7">
+                No code. No tech background. Just Claude Code, a laptop, and 8 focused hours.
+              </p>
 
-          {/* Countdown */}
-          <div className="mb-10">
-            <p className="text-white/40 text-sm mb-4">Bootcamp starts in</p>
-            <CountdownTimer />
-          </div>
+              <div className="mb-8">
+                <p className="text-white/40 text-xs uppercase tracking-wider mb-3">Bootcamp starts in</p>
+                <CountdownTimer />
+              </div>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="#register"
-              className="bg-[#1E9DD9] hover:bg-[#1a8ec4] text-white font-semibold px-8 py-4 rounded-xl text-lg transition-colors"
-            >
-              Register for ₹2,999
-            </a>
-            <a
-              href="#what-you-build"
-              className="border border-white/20 hover:border-white/40 text-white/80 hover:text-white font-semibold px-8 py-4 rounded-xl text-lg transition-colors"
-            >
-              See what you will build
-            </a>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <a href="#register"
+                  className="bg-[#1E9DD9] hover:bg-[#1a8ec4] text-white font-semibold px-7 py-3.5 rounded-xl text-base transition-colors text-center">
+                  Register for ₹2,999
+                </a>
+                <a href="#what-you-build"
+                  className="border border-white/20 hover:border-white/40 text-white/70 hover:text-white font-semibold px-7 py-3.5 rounded-xl text-base transition-colors text-center">
+                  See what you will build
+                </a>
+              </div>
+            </div>
+
+            {/* Right — animated terminal */}
+            <div className="hidden lg:block">
+              <TerminalWindow />
+            </div>
           </div>
         </section>
 
         {/* Stats */}
         <section className="max-w-6xl mx-auto px-4 sm:px-6 pb-16">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {[
-              { value: "2", label: "live products you build" },
-              { value: "1", label: "day, 8 hours total" },
-              { value: "0", label: "lines of code you write" },
-              { value: "₹2,999", label: "one-time fee, everything included" },
-            ].map((s, i) => (
-              <div key={i} className="bg-white/5 border border-white/10 rounded-2xl p-6 text-center">
-                <div className="text-[#1E9DD9] font-bold text-3xl sm:text-4xl mb-1" style={{ fontFamily: "Poppins, sans-serif" }}>{s.value}</div>
-                <div className="text-white/50 text-sm">{s.label}</div>
-              </div>
-            ))}
-          </div>
+          <RevealSection>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {[
+                { value: "2", label: "live products you build" },
+                { value: "1", label: "day, 8 hours total" },
+                { value: "0", label: "lines of code you write" },
+                { value: "₹2,999", label: "one-time fee, everything included" },
+              ].map((s, i) => (
+                <div key={i} className="bg-white/5 border border-white/10 rounded-2xl p-6 text-center">
+                  <div className="text-[#1E9DD9] font-bold text-3xl sm:text-4xl mb-1" style={{ fontFamily: "Poppins, sans-serif" }}>{s.value}</div>
+                  <div className="text-white/50 text-sm">{s.label}</div>
+                </div>
+              ))}
+            </div>
+          </RevealSection>
         </section>
 
         {/* What you build */}
         <section id="what-you-build" className="max-w-6xl mx-auto px-4 sm:px-6 py-16">
-          <h2 className="font-bold text-3xl sm:text-4xl mb-3 text-center" style={{ fontFamily: "Poppins, sans-serif" }}>
-            What you will build
-          </h2>
-          <p className="text-white/50 text-center mb-12">
-            Two real products. Built by you. Deployed live. Both yours to keep forever.
-          </p>
+          <RevealSection>
+            <h2 className="font-bold text-3xl sm:text-4xl mb-3 text-center" style={{ fontFamily: "Poppins, sans-serif" }}>
+              What you will build
+            </h2>
+            <p className="text-white/50 text-center mb-12">
+              Two real products. Built by you. Deployed live. Both yours to keep forever.
+            </p>
+          </RevealSection>
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {builds.map((b) => (
-              <div key={b.num} className="bg-white/5 border border-white/10 hover:border-[#1E9DD9]/40 rounded-2xl p-8 transition-colors">
-                <div className="flex items-center gap-3 mb-5">
-                  <div className="w-10 h-10 bg-[#1E9DD9] rounded-xl flex items-center justify-center">
-                    <span className="text-white font-bold text-sm" style={{ fontFamily: "Poppins, sans-serif" }}>{b.num}</span>
-                  </div>
-                  <span className="text-[#1E9DD9] text-sm font-medium">Starts at {b.time}</span>
+            {/* Build 01 — Professional Website */}
+            <RevealSection delay={100}>
+              <div className="bg-white/5 border border-white/10 hover:border-[#1E9DD9]/40 rounded-2xl p-8 transition-colors h-full flex flex-col">
+                <div className="mb-5">
+                  <WebsiteMockup />
                 </div>
-                <h3 className="font-bold text-xl text-white mb-3" style={{ fontFamily: "Poppins, sans-serif" }}>{b.title}</h3>
-                <p className="text-white/60 text-sm leading-relaxed mb-5">{b.desc}</p>
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-10 h-10 bg-[#1E9DD9] rounded-xl flex items-center justify-center">
+                    <span className="text-white font-bold text-sm" style={{ fontFamily: "Poppins, sans-serif" }}>01</span>
+                  </div>
+                  <span className="text-[#1E9DD9] text-sm font-medium">Starts at 10:00am</span>
+                </div>
+                <h3 className="font-bold text-xl text-white mb-3" style={{ fontFamily: "Poppins, sans-serif" }}>Your Professional Website</h3>
+                <p className="text-white/60 text-sm leading-relaxed mb-5 flex-1">
+                  A real, deployed website about you, your work, or your business. Custom design, your content, built with Next.js and deployed to Vercel. Live URL in your hands before lunch.
+                </p>
                 <div className="flex gap-2 flex-wrap mb-5">
-                  {b.stack.map(t => (
+                  {["Next.js", "Tailwind CSS", "Vercel"].map(t => (
                     <span key={t} className="bg-white/5 border border-white/10 text-white/60 text-xs px-3 py-1 rounded-full">{t}</span>
                   ))}
                 </div>
                 <div className="bg-[#1E9DD9]/10 border border-[#1E9DD9]/20 rounded-lg px-4 py-3">
-                  <p className="text-[#1E9DD9] text-sm font-medium">Outcome: {b.outcome}</p>
+                  <p className="text-[#1E9DD9] text-sm font-medium">Outcome: A live website you can share with anyone today.</p>
                 </div>
               </div>
-            ))}
+            </RevealSection>
+
+            {/* Build 02 — AI Professional Assistant */}
+            <RevealSection delay={200}>
+              <div className="bg-white/5 border border-white/10 hover:border-[#1E9DD9]/40 rounded-2xl p-8 transition-colors h-full flex flex-col">
+                <div className="mb-5">
+                  <ChatMockup />
+                </div>
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-10 h-10 bg-[#1E9DD9] rounded-xl flex items-center justify-center">
+                    <span className="text-white font-bold text-sm" style={{ fontFamily: "Poppins, sans-serif" }}>02</span>
+                  </div>
+                  <span className="text-[#1E9DD9] text-sm font-medium">Starts at 2:00pm</span>
+                </div>
+                <h3 className="font-bold text-xl text-white mb-3" style={{ fontFamily: "Poppins, sans-serif" }}>Your AI Professional Assistant</h3>
+                <p className="text-white/60 text-sm leading-relaxed mb-5 flex-1">
+                  A personalized AI tool that knows your job title, your company, and your work context. Draft emails in your voice, prepare for difficult meetings, generate ideas, think through problems. Powered by Claude API, deployed to Vercel.
+                </p>
+                <div className="flex gap-2 flex-wrap mb-5">
+                  {["Next.js", "Claude API", "Vercel"].map(t => (
+                    <span key={t} className="bg-white/5 border border-white/10 text-white/60 text-xs px-3 py-1 rounded-full">{t}</span>
+                  ))}
+                </div>
+                <div className="bg-[#1E9DD9]/10 border border-[#1E9DD9]/20 rounded-lg px-4 py-3">
+                  <p className="text-[#1E9DD9] text-sm font-medium">Outcome: A live AI tool you will use every day at work.</p>
+                </div>
+              </div>
+            </RevealSection>
           </div>
         </section>
 
         {/* Schedule */}
         <section id="schedule" className="max-w-6xl mx-auto px-4 sm:px-6 py-16">
-          <h2 className="font-bold text-3xl sm:text-4xl mb-3 text-center" style={{ fontFamily: "Poppins, sans-serif" }}>
-            Full day schedule
-          </h2>
-          <p className="text-white/50 text-center mb-12">June 26, 2026 &mdash; 10:00am to 6:00pm</p>
+          <RevealSection>
+            <h2 className="font-bold text-3xl sm:text-4xl mb-3 text-center" style={{ fontFamily: "Poppins, sans-serif" }}>
+              Full day schedule
+            </h2>
+            <p className="text-white/50 text-center mb-12">June 26, 2026 &mdash; 10:00am to 6:00pm</p>
+          </RevealSection>
 
           <div className="max-w-3xl mx-auto">
             <div className="relative">
@@ -221,27 +274,32 @@ export default function HomePage() {
 
         {/* Who this is for */}
         <section className="max-w-6xl mx-auto px-4 sm:px-6 py-16">
-          <h2 className="font-bold text-3xl sm:text-4xl mb-3 text-center" style={{ fontFamily: "Poppins, sans-serif" }}>
-            Who Spark is for
-          </h2>
-          <p className="text-white/50 text-center mb-12">
-            Built for professionals who use their brain, not their code editor.
-          </p>
+          <RevealSection>
+            <h2 className="font-bold text-3xl sm:text-4xl mb-3 text-center" style={{ fontFamily: "Poppins, sans-serif" }}>
+              Who Spark is for
+            </h2>
+            <p className="text-white/50 text-center mb-12">
+              Built for professionals who use their brain, not their code editor.
+            </p>
+          </RevealSection>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {whoThisIsFor.map((w, i) => (
-              <div key={i} className="bg-white/5 border border-white/10 rounded-2xl p-6">
-                <div className="w-8 h-8 bg-[#1E9DD9]/10 rounded-lg flex items-center justify-center mb-4">
-                  <div className="w-3 h-3 bg-[#1E9DD9] rounded-full" />
+              <RevealSection key={i} delay={i * 80}>
+                <div className="bg-white/5 border border-white/10 rounded-2xl p-6 h-full">
+                  <div className="w-8 h-8 bg-[#1E9DD9]/10 rounded-lg flex items-center justify-center mb-4">
+                    <div className="w-3 h-3 bg-[#1E9DD9] rounded-full" />
+                  </div>
+                  <h3 className="text-white font-semibold text-base mb-2" style={{ fontFamily: "Poppins, sans-serif" }}>{w.role}</h3>
+                  <p className="text-white/50 text-sm leading-relaxed">{w.detail}</p>
                 </div>
-                <h3 className="text-white font-semibold text-base mb-2" style={{ fontFamily: "Poppins, sans-serif" }}>{w.role}</h3>
-                <p className="text-white/50 text-sm leading-relaxed">{w.detail}</p>
-              </div>
+              </RevealSection>
             ))}
           </div>
         </section>
 
         {/* Facilitator */}
         <section className="max-w-6xl mx-auto px-4 sm:px-6 py-16">
+          <RevealSection>
           <div className="max-w-3xl mx-auto bg-white/5 border border-white/10 rounded-3xl p-8 sm:p-10">
             <p className="text-white/40 text-xs font-semibold uppercase tracking-wider mb-6">Your facilitator</p>
             <div className="flex flex-col sm:flex-row gap-6 items-start">
@@ -260,27 +318,32 @@ export default function HomePage() {
               </div>
             </div>
           </div>
+          </RevealSection>
         </section>
 
         {/* Prerequisites */}
         <section className="max-w-6xl mx-auto px-4 sm:px-6 py-16">
           <div className="max-w-3xl mx-auto">
+            <RevealSection>
             <h2 className="font-bold text-2xl sm:text-3xl mb-8 text-center" style={{ fontFamily: "Poppins, sans-serif" }}>
               What you need before arriving
             </h2>
+            </RevealSection>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               {[
                 { title: "A laptop", detail: "Mac or Windows. Any model from the last 5 years. Bring your charger." },
                 { title: "Claude Pro", detail: "$20/month subscription at anthropic.com. Required. Setup guide included after registration." },
                 { title: "An open mind", detail: "No tech background needed. If you have a job and can describe it in plain English, you can build with Claude Code." },
               ].map((p, i) => (
-                <div key={i} className="bg-white/5 border border-white/10 rounded-xl p-6">
-                  <div className="w-8 h-8 bg-[#1E9DD9] rounded-lg flex items-center justify-center mb-4">
-                    <span className="text-white font-bold text-sm" style={{ fontFamily: "Poppins, sans-serif" }}>{i + 1}</span>
+                <RevealSection key={i} delay={i * 100}>
+                  <div className="bg-white/5 border border-white/10 rounded-xl p-6 h-full">
+                    <div className="w-8 h-8 bg-[#1E9DD9] rounded-lg flex items-center justify-center mb-4">
+                      <span className="text-white font-bold text-sm" style={{ fontFamily: "Poppins, sans-serif" }}>{i + 1}</span>
+                    </div>
+                    <h4 className="text-white font-semibold text-sm mb-2" style={{ fontFamily: "Poppins, sans-serif" }}>{p.title}</h4>
+                    <p className="text-white/50 text-sm leading-relaxed">{p.detail}</p>
                   </div>
-                  <h4 className="text-white font-semibold text-sm mb-2" style={{ fontFamily: "Poppins, sans-serif" }}>{p.title}</h4>
-                  <p className="text-white/50 text-sm leading-relaxed">{p.detail}</p>
-                </div>
+                </RevealSection>
               ))}
             </div>
           </div>
@@ -288,12 +351,14 @@ export default function HomePage() {
 
         {/* Pricing + Registration form */}
         <section id="register" className="max-w-6xl mx-auto px-4 sm:px-6 py-16">
-          <h2 className="font-bold text-3xl sm:text-4xl mb-3 text-center" style={{ fontFamily: "Poppins, sans-serif" }}>
-            Claim your seat
-          </h2>
-          <p className="text-white/50 text-center mb-12">
-            10 seats. One price. Everything included.
-          </p>
+          <RevealSection>
+            <h2 className="font-bold text-3xl sm:text-4xl mb-3 text-center" style={{ fontFamily: "Poppins, sans-serif" }}>
+              Claim your seat
+            </h2>
+            <p className="text-white/50 text-center mb-12">
+              10 seats. One price. Everything included.
+            </p>
+          </RevealSection>
 
           <div className="max-w-2xl mx-auto">
             {/* Pricing card */}
@@ -341,9 +406,11 @@ export default function HomePage() {
 
         {/* FAQ */}
         <section id="faq" className="max-w-6xl mx-auto px-4 sm:px-6 py-16">
-          <h2 className="font-bold text-3xl sm:text-4xl mb-12 text-center" style={{ fontFamily: "Poppins, sans-serif" }}>
-            Frequently asked questions
-          </h2>
+          <RevealSection>
+            <h2 className="font-bold text-3xl sm:text-4xl mb-12 text-center" style={{ fontFamily: "Poppins, sans-serif" }}>
+              Frequently asked questions
+            </h2>
+          </RevealSection>
           <div className="max-w-3xl mx-auto">
             <FaqAccordion />
           </div>
@@ -351,6 +418,7 @@ export default function HomePage() {
 
         {/* Final CTA */}
         <section className="max-w-6xl mx-auto px-4 sm:px-6 py-16 text-center">
+          <RevealSection>
           <div className="bg-gradient-to-br from-[#1E9DD9]/10 to-transparent border border-[#1E9DD9]/20 rounded-3xl p-12">
             <h2 className="font-bold text-3xl sm:text-4xl text-white mb-4" style={{ fontFamily: "Poppins, sans-serif" }}>
               Your first AI product starts on June 26.
@@ -365,6 +433,7 @@ export default function HomePage() {
               Register now for ₹2,999
             </a>
           </div>
+          </RevealSection>
         </section>
 
       </main>
