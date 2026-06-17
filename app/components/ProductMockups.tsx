@@ -29,32 +29,51 @@ function Skeleton({ w = "100%", h = 8, opacity = 0.15 }: { w?: string; h?: numbe
 export function WebsiteMockup() {
   return (
     <BrowserChrome url="priya-sharma.vercel.app">
-      {/* Nav */}
-      <div className="flex items-center justify-between mb-4">
-        <Skeleton w="60px" h={8} opacity={0.3} />
+      {/* Nav bar */}
+      <div className="flex items-center justify-between mb-3 pb-2" style={{ borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
+        <div style={{ width: 48, height: 10, borderRadius: 4, background: '#1E9DD9', opacity: 0.85 }} />
         <div className="flex gap-2">
-          {[40, 40, 48, 52].map((w, i) => <Skeleton key={i} w={`${w}px`} h={6} opacity={0.1} />)}
+          {[36, 44, 36, 52].map((w, i) => (
+            <div key={i} style={{ width: w, height: 7, borderRadius: 3, background: 'rgba(255,255,255,0.25)' }} />
+          ))}
         </div>
       </div>
-      {/* Hero */}
-      <div className="mb-4 p-4 rounded-lg" style={{ background: 'rgba(30,157,217,0.06)', border: '1px solid rgba(30,157,217,0.15)' }}>
-        <div className="mb-2"><Skeleton w="70%" h={14} opacity={0.5} /></div>
-        <div className="mb-1"><Skeleton w="55%" h={10} opacity={0.35} /></div>
-        <div className="mb-3"><Skeleton w="80%" h={6} opacity={0.15} /></div>
+
+      {/* Hero band */}
+      <div className="rounded-lg mb-3 px-4 py-4" style={{ background: 'linear-gradient(135deg, rgba(30,157,217,0.22) 0%, rgba(30,157,217,0.06) 100%)', border: '1px solid rgba(30,157,217,0.25)' }}>
+        {/* Name tag */}
+        <div style={{ width: 90, height: 7, borderRadius: 3, background: 'rgba(30,157,217,0.7)', marginBottom: 8 }} />
+        {/* Headline — two lines */}
+        <div style={{ width: '82%', height: 13, borderRadius: 4, background: 'rgba(255,255,255,0.75)', marginBottom: 5 }} />
+        <div style={{ width: '60%', height: 13, borderRadius: 4, background: 'rgba(255,255,255,0.5)', marginBottom: 10 }} />
+        {/* Sub-text */}
+        <div style={{ width: '90%', height: 6, borderRadius: 3, background: 'rgba(255,255,255,0.2)', marginBottom: 3 }} />
+        <div style={{ width: '70%', height: 6, borderRadius: 3, background: 'rgba(255,255,255,0.2)', marginBottom: 12 }} />
+        {/* CTAs */}
         <div className="flex gap-2">
-          <div style={{ width: 80, height: 24, borderRadius: 6, background: '#1E9DD9', opacity: 0.8 }} />
-          <div style={{ width: 80, height: 24, borderRadius: 6, border: '1px solid rgba(255,255,255,0.2)' }} />
+          <div style={{ width: 88, height: 22, borderRadius: 6, background: '#1E9DD9' }} />
+          <div style={{ width: 88, height: 22, borderRadius: 6, border: '1px solid rgba(255,255,255,0.35)' }} />
         </div>
       </div>
-      {/* About section */}
-      <div className="grid grid-cols-2 gap-3">
-        <div className="space-y-1.5">
-          <Skeleton w="50%" h={7} opacity={0.3} />
-          <Skeleton h={5} opacity={0.1} />
-          <Skeleton w="90%" h={5} opacity={0.1} />
-          <Skeleton w="75%" h={5} opacity={0.1} />
+
+      {/* About section — 2 col */}
+      <div className="grid grid-cols-5 gap-3">
+        <div className="col-span-3 space-y-2">
+          <div style={{ width: 60, height: 8, borderRadius: 3, background: 'rgba(255,255,255,0.45)' }} />
+          <div style={{ width: '95%', height: 5, borderRadius: 2, background: 'rgba(255,255,255,0.18)' }} />
+          <div style={{ width: '88%', height: 5, borderRadius: 2, background: 'rgba(255,255,255,0.15)' }} />
+          <div style={{ width: '75%', height: 5, borderRadius: 2, background: 'rgba(255,255,255,0.12)' }} />
+          <div className="flex gap-2 pt-1">
+            {['Product', 'Strategy', 'AI'].map(tag => (
+              <div key={tag} style={{ padding: '2px 8px', borderRadius: 999, fontSize: 8, background: 'rgba(30,157,217,0.15)', border: '1px solid rgba(30,157,217,0.3)', color: '#1E9DD9', fontFamily: 'Inter, sans-serif' }}>{tag}</div>
+            ))}
+          </div>
         </div>
-        <div className="rounded-lg" style={{ height: 70, background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)' }} />
+        <div className="col-span-2 rounded-lg flex items-center justify-center" style={{ background: 'rgba(30,157,217,0.08)', border: '1px solid rgba(30,157,217,0.15)', minHeight: 72 }}>
+          <div style={{ width: 32, height: 32, borderRadius: '50%', background: 'rgba(30,157,217,0.35)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <div style={{ width: 14, height: 14, borderRadius: '50%', background: '#1E9DD9', opacity: 0.7 }} />
+          </div>
+        </div>
       </div>
     </BrowserChrome>
   );
