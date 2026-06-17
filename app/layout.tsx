@@ -5,6 +5,13 @@ const DOMAIN = process.env.NEXT_PUBLIC_BASE_URL ?? "https://sparkaibootcamp.com"
 
 export const metadata: Metadata = {
   title: "Spark — 1-Day AI Build Bootcamp for Professionals | by Penterra AI",
+  icons: {
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+    ],
+    shortcut: "/icon.svg",
+    apple: "/icon.svg",
+  },
   description:
     "Build 2 live AI products in 1 day. No code. No tech team. Spark is a hands-on AI bootcamp for non-technical professionals — you leave with a website and an AI tool, both deployed and live.",
   keywords: [

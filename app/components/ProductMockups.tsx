@@ -27,48 +27,63 @@ function Skeleton({ w = "100%", h = 8, opacity = 0.15 }: { w?: string; h?: numbe
 }
 
 export function WebsiteMockup() {
+  const s = {
+    nav: { display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 10, paddingBottom: 8, borderBottom: '1px solid rgba(255,255,255,0.08)' },
+    navLogo: { fontFamily: 'Poppins, sans-serif', fontWeight: 700, fontSize: 10, color: '#fff', letterSpacing: '-0.2px' },
+    navLinks: { display: 'flex', gap: 10 },
+    navLink: { fontSize: 8, color: 'rgba(255,255,255,0.45)', fontFamily: 'Inter, sans-serif' },
+    navCta: { fontSize: 8, color: '#fff', fontFamily: 'Inter, sans-serif', background: '#1E9DD9', padding: '2px 8px', borderRadius: 4, fontWeight: 600 },
+    hero: { background: 'linear-gradient(135deg, #0f1e30 0%, #0a141f 100%)', border: '1px solid rgba(30,157,217,0.2)', borderRadius: 8, padding: '14px 14px 12px', marginBottom: 10 },
+    greeting: { fontSize: 8, color: 'rgba(255,255,255,0.5)', fontFamily: 'Inter, sans-serif', marginBottom: 5 },
+    headline: { fontFamily: 'Poppins, sans-serif', fontWeight: 700, fontSize: 13, color: '#fff', lineHeight: '1.3', marginBottom: 3 },
+    role: { fontSize: 8, color: '#1E9DD9', fontFamily: 'Inter, sans-serif', fontWeight: 500, marginBottom: 7 },
+    desc: { fontSize: 7.5, color: 'rgba(255,255,255,0.5)', fontFamily: 'Inter, sans-serif', lineHeight: '1.5', marginBottom: 10, maxWidth: '85%' },
+    ctaRow: { display: 'flex', gap: 6 },
+    ctaPrimary: { fontSize: 8, fontFamily: 'Inter, sans-serif', fontWeight: 600, color: '#fff', background: '#1E9DD9', padding: '4px 12px', borderRadius: 5 },
+    ctaSecondary: { fontSize: 8, fontFamily: 'Inter, sans-serif', color: 'rgba(255,255,255,0.6)', border: '1px solid rgba(255,255,255,0.2)', padding: '4px 12px', borderRadius: 5 },
+    aboutRow: { display: 'flex', gap: 10, alignItems: 'flex-start' },
+    aboutText: { flex: 1 },
+    aboutHead: { fontFamily: 'Poppins, sans-serif', fontWeight: 600, fontSize: 9, color: '#fff', marginBottom: 5 },
+    aboutBody: { fontSize: 7.5, color: 'rgba(255,255,255,0.45)', fontFamily: 'Inter, sans-serif', lineHeight: '1.55' },
+    tags: { display: 'flex', gap: 5, marginTop: 7 },
+    tag: { fontSize: 7, padding: '2px 6px', borderRadius: 999, border: '1px solid rgba(30,157,217,0.35)', color: '#1E9DD9', fontFamily: 'Inter, sans-serif' },
+    photo: { width: 52, height: 52, borderRadius: 8, background: 'linear-gradient(135deg, rgba(30,157,217,0.25) 0%, rgba(30,157,217,0.08) 100%)', border: '1px solid rgba(30,157,217,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 },
+    photoInner: { width: 22, height: 22, borderRadius: '50%', background: 'rgba(30,157,217,0.4)' },
+  };
   return (
     <BrowserChrome url="priya-sharma.vercel.app">
       {/* Nav */}
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12, paddingBottom: 10, borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
-        <div style={{ width: 52, height: 10, borderRadius: 4, background: '#1E9DD9' }} />
-        <div style={{ display: 'flex', gap: 8 }}>
-          {[38, 46, 38, 54].map((w, i) => (
-            <div key={i} style={{ width: w, height: 7, borderRadius: 3, background: 'rgba(255,255,255,0.28)' }} />
-          ))}
+      <div style={s.nav}>
+        <span style={s.navLogo}>Priya</span>
+        <div style={s.navLinks}>
+          {['About', 'Work', 'Contact'].map(l => <span key={l} style={s.navLink}>{l}</span>)}
+          <span style={s.navCta}>Hire me</span>
         </div>
       </div>
 
-      {/* Hero band */}
-      <div style={{ background: 'linear-gradient(135deg, rgba(30,157,217,0.20) 0%, rgba(30,157,217,0.05) 100%)', border: '1px solid rgba(30,157,217,0.28)', borderRadius: 10, padding: '16px 16px 14px', marginBottom: 12 }}>
-        <div style={{ width: 96, height: 7, borderRadius: 3, background: 'rgba(30,157,217,0.75)', marginBottom: 10 }} />
-        <div style={{ width: '84%', height: 14, borderRadius: 4, background: 'rgba(255,255,255,0.80)', marginBottom: 6 }} />
-        <div style={{ width: '62%', height: 14, borderRadius: 4, background: 'rgba(255,255,255,0.55)', marginBottom: 10 }} />
-        <div style={{ width: '92%', height: 6, borderRadius: 3, background: 'rgba(255,255,255,0.22)', marginBottom: 4 }} />
-        <div style={{ width: '72%', height: 6, borderRadius: 3, background: 'rgba(255,255,255,0.16)', marginBottom: 14 }} />
-        <div style={{ display: 'flex', gap: 8 }}>
-          <div style={{ width: 90, height: 24, borderRadius: 6, background: '#1E9DD9' }} />
-          <div style={{ width: 90, height: 24, borderRadius: 6, border: '1px solid rgba(255,255,255,0.38)' }} />
+      {/* Hero */}
+      <div style={s.hero}>
+        <p style={s.greeting}>Hi there 👋</p>
+        <p style={s.headline}>I'm Priya Sharma</p>
+        <p style={s.role}>Sales Manager · TechCorp · Mumbai</p>
+        <p style={s.desc}>I help B2B companies grow revenue across APAC. 10 years closing enterprise deals in fintech and SaaS.</p>
+        <div style={s.ctaRow}>
+          <span style={s.ctaPrimary}>Let's talk</span>
+          <span style={s.ctaSecondary}>See my work</span>
         </div>
       </div>
 
-      {/* About row */}
-      <div style={{ display: 'flex', gap: 12 }}>
-        <div style={{ flex: 3 }}>
-          <div style={{ width: 64, height: 9, borderRadius: 3, background: 'rgba(255,255,255,0.50)', marginBottom: 8 }} />
-          <div style={{ width: '96%', height: 5, borderRadius: 2, background: 'rgba(255,255,255,0.20)', marginBottom: 4 }} />
-          <div style={{ width: '88%', height: 5, borderRadius: 2, background: 'rgba(255,255,255,0.16)', marginBottom: 4 }} />
-          <div style={{ width: '74%', height: 5, borderRadius: 2, background: 'rgba(255,255,255,0.12)', marginBottom: 10 }} />
-          <div style={{ display: 'flex', gap: 6 }}>
-            {['Product', 'Strategy', 'AI'].map(tag => (
-              <div key={tag} style={{ padding: '2px 8px', borderRadius: 999, fontSize: 9, background: 'rgba(30,157,217,0.15)', border: '1px solid rgba(30,157,217,0.35)', color: '#1E9DD9', fontFamily: 'Inter, sans-serif', lineHeight: '16px' }}>{tag}</div>
-            ))}
+      {/* About */}
+      <div style={s.aboutRow}>
+        <div style={s.aboutText}>
+          <p style={s.aboutHead}>About Me</p>
+          <p style={s.aboutBody}>15 years in B2B sales across India, Singapore, and Australia. Currently leading the enterprise team at TechCorp.</p>
+          <div style={s.tags}>
+            {['Sales', 'FinTech', 'SaaS', 'APAC'].map(t => <span key={t} style={s.tag}>{t}</span>)}
           </div>
         </div>
-        <div style={{ flex: 2, background: 'rgba(30,157,217,0.09)', border: '1px solid rgba(30,157,217,0.18)', borderRadius: 8, minHeight: 76, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <div style={{ width: 36, height: 36, borderRadius: '50%', background: 'rgba(30,157,217,0.30)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <div style={{ width: 16, height: 16, borderRadius: '50%', background: '#1E9DD9', opacity: 0.75 }} />
-          </div>
+        <div style={s.photo}>
+          <div style={s.photoInner} />
         </div>
       </div>
     </BrowserChrome>
