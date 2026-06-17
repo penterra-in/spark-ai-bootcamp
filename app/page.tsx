@@ -252,10 +252,10 @@ export default function HomePage() {
                 <h3 className="font-bold text-xl text-white mb-1" style={{ fontFamily: "Poppins, sans-serif" }}>David Paul M</h3>
                 <p className="text-[#1E9DD9] text-sm mb-4">Founder, Penterra AI</p>
                 <p className="text-white/60 text-sm leading-relaxed mb-4">
-                  In March 2026, I attended a 2-day hands-on Claude Code bootcamp by thecrux.ai. I was part of their first cohort. That experience changed how I work. In the 90 days since, I have shipped 4 AI-native products across different domains and industries &mdash; an AI content system, an AI course, a GCC advisory platform, and several client builds.
+                  90 days ago, I could not build a single AI product. Today I have shipped 4 AI-native products across different domains &mdash; an AI content system, an AI course platform, a GCC advisory platform, and several client builds &mdash; all without a technical co-founder or an engineering team.
                 </p>
                 <p className="text-white/60 text-sm leading-relaxed">
-                  I went from non-technical to building and deploying real products. Spark is how I give that same transformation to professionals like you &mdash; in one focused day.
+                  The shift happened when I stopped consuming AI content and started building with it. Spark is the day I wish I had when I started &mdash; 8 focused hours to go from zero to two live products, with someone who has done it showing you exactly how.
                 </p>
               </div>
             </div>
