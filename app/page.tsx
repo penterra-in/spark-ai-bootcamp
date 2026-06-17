@@ -436,62 +436,6 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Testimonials */}
-        <section id="testimonials" className="max-w-6xl mx-auto px-4 sm:px-6 py-16">
-          <RevealSection>
-            <h2 className="font-bold text-3xl sm:text-4xl mb-4 text-center" style={{ fontFamily: "Poppins, sans-serif" }}>
-              What Spark builders say
-            </h2>
-            <p className="text-white/50 text-center text-base mb-12">Real professionals. One day. Two live products.</p>
-          </RevealSection>
-          <RevealSection>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-            {[
-              {
-                quote: "Testimonials from Cohort 1 will appear here after June 26.",
-                name: "Cohort 1 Graduate",
-                role: "Coming June 26, 2026",
-                stars: 5,
-                placeholder: true,
-              },
-              {
-                quote: "Be the first to build at Spark and share your experience with the next cohort.",
-                name: "Your name here",
-                role: "Register to secure your seat",
-                stars: 5,
-                placeholder: true,
-              },
-              {
-                quote: "10 seats. One day. Two products. The first cohort sets the bar for every cohort that follows.",
-                name: "Spark Cohort 1",
-                role: "June 26, 2026",
-                stars: 5,
-                placeholder: true,
-              },
-            ].map((t, i) => (
-              <div key={i} className="rounded-2xl p-6 flex flex-col gap-4"
-                style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)" }}>
-                <div className="flex gap-0.5">
-                  {Array.from({ length: t.stars }).map((_, s) => (
-                    <svg key={s} width="16" height="16" viewBox="0 0 24 24"
-                      fill={t.placeholder ? "rgba(30,157,217,0.3)" : "#1E9DD9"} stroke="none">
-                      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-                    </svg>
-                  ))}
-                </div>
-                <p className={`text-sm leading-relaxed flex-1 ${t.placeholder ? "text-white/30 italic" : "text-white/70"}`}>
-                  &ldquo;{t.quote}&rdquo;
-                </p>
-                <div>
-                  <p className={`text-sm font-semibold ${t.placeholder ? "text-white/30" : "text-white"}`}>{t.name}</p>
-                  <p className="text-white/30 text-xs">{t.role}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-          </RevealSection>
-        </section>
-
         {/* Final CTA */}
         <section className="max-w-6xl mx-auto px-4 sm:px-6 py-16 text-center">
           <RevealSection>
