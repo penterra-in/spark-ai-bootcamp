@@ -95,7 +95,7 @@ export default function RegistrationForm({ seatsLeft }: { seatsLeft?: number }) 
           You&rsquo;re registered, {form.fullName.split(" ")[0]}!
         </h3>
         <p className="text-white/60 text-sm mb-4 leading-relaxed max-w-sm mx-auto">
-          We&rsquo;ve received your details. You will receive a payment link on <span className="text-white">{form.email}</span> within the next few hours to confirm your seat.
+          We&rsquo;ve received your details. You will receive a payment link on <span className="text-white">{form.email}</span> within the next few minutes to confirm your seat.
         </p>
         <div className="bg-[#1E9DD9]/10 border border-[#1E9DD9]/20 rounded-xl px-5 py-4 text-left max-w-sm mx-auto">
           <p className="text-[#1E9DD9] text-xs font-semibold uppercase tracking-wider mb-2">What happens next</p>
@@ -223,7 +223,7 @@ export default function RegistrationForm({ seatsLeft }: { seatsLeft?: number }) 
       </button>
 
       <p className="text-white/30 text-xs text-center">
-        You will receive a payment link by email within a few hours.
+        You will receive a payment link by email within a few minutes.
         <br />Your seat is confirmed only after payment is complete.
       </p>
     </form>
