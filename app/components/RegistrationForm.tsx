@@ -44,6 +44,7 @@ export default function RegistrationForm({ seatsLeft }: { seatsLeft?: number }) 
   const [form, setForm]       = useState<FormData>(EMPTY);
   const [loading, setLoading] = useState(false);
   const [error, setError]     = useState("");
+  const [submitted, setSubmitted] = useState(false);
 
   function set(field: keyof FormData) {
     return (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
@@ -62,15 +63,14 @@ export default function RegistrationForm({ seatsLeft }: { seatsLeft?: number }) 
         body: JSON.stringify(form),
       });
 
-      const json = await res.json() as { payment_session_id?: string; error?: string };
+      const json = await res.json() as { ok?: boolean; error?: string };
 
-      if (!res.ok || !json.payment_session_id) {
+      if (!res.ok || !json.ok) {
         setError(json.error ?? "Something went wrong. Please try again.");
         return;
       }
 
-      // Load Cashfree JS SDK and launch checkout
-      await loadCashfreeAndCheckout(json.payment_session_id);
+      setSubmitted(true);
     } catch {
       setError("Network error. Please check your connection and try again.");
     } finally {
@@ -82,6 +82,32 @@ export default function RegistrationForm({ seatsLeft }: { seatsLeft?: number }) 
     "w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-white/30 text-sm transition-colors focus:border-[#1E9DD9] focus:bg-white/8";
 
   const labelClass = "block text-white/70 text-sm font-medium mb-2";
+
+  if (submitted) {
+    return (
+      <div className="text-center py-6">
+        <div className="w-14 h-14 bg-[#1E9DD9]/10 border border-[#1E9DD9]/30 rounded-full flex items-center justify-center mx-auto mb-5">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1E9DD9" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <polyline points="20 6 9 17 4 12" />
+          </svg>
+        </div>
+        <h3 className="font-bold text-xl text-white mb-2" style={{ fontFamily: "Poppins, sans-serif" }}>
+          You&rsquo;re registered, {form.fullName.split(" ")[0]}!
+        </h3>
+        <p className="text-white/60 text-sm mb-4 leading-relaxed max-w-sm mx-auto">
+          We&rsquo;ve received your details. You will receive a payment link on <span className="text-white">{form.email}</span> within the next few hours to confirm your seat.
+        </p>
+        <div className="bg-[#1E9DD9]/10 border border-[#1E9DD9]/20 rounded-xl px-5 py-4 text-left max-w-sm mx-auto">
+          <p className="text-[#1E9DD9] text-xs font-semibold uppercase tracking-wider mb-2">What happens next</p>
+          <ol className="text-white/60 text-sm space-y-1.5 list-decimal list-inside">
+            <li>You&rsquo;ll receive a ₹2,999 payment link by email</li>
+            <li>Complete the payment to lock in your seat</li>
+            <li>Confirmation + Day Zero setup guide sent immediately</li>
+          </ol>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
@@ -193,12 +219,12 @@ export default function RegistrationForm({ seatsLeft }: { seatsLeft?: number }) 
         disabled={loading}
         className="w-full bg-[#1E9DD9] hover:bg-[#1a8ec4] disabled:bg-[#1E9DD9]/50 disabled:cursor-not-allowed text-white font-semibold py-4 rounded-xl text-base transition-colors"
       >
-        {loading ? "Creating your spot..." : "Register and Pay ₹2,999"}
+        {loading ? "Submitting..." : "Reserve My Seat — ₹2,999"}
       </button>
 
       <p className="text-white/30 text-xs text-center">
-        Secure payment via Cashfree &mdash; UPI, cards, and net banking accepted.
-        <br />You will receive a confirmation email after payment.
+        You will receive a payment link by email within a few hours.
+        <br />Your seat is confirmed only after payment is complete.
       </p>
     </form>
   );

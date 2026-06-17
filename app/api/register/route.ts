@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
-import { createBootcampOrder } from "@/lib/cashfree";
+import { sendAdminNotification } from "@/lib/email";
 
 export const dynamic = "force-dynamic";
 
@@ -30,13 +30,26 @@ export async function POST(req: Request) {
     );
   }
 
+  const { fullName, company, jobFunction, email, phone, linkedinUrl, roleSummary } = parsed.data;
+
   try {
-    const { payment_session_id, order_id } = await createBootcampOrder(parsed.data);
-    return NextResponse.json({ payment_session_id, order_id });
+    await sendAdminNotification({
+      name: fullName,
+      company,
+      jobFunction,
+      email,
+      phone,
+      linkedinUrl,
+      roleSummary,
+      orderId: "PENDING PAYMENT",
+      amount: 0,
+    });
+    console.log("[register] admin notified for:", email);
+    return NextResponse.json({ ok: true });
   } catch (err) {
-    console.error("[register] Cashfree error:", err);
+    console.error("[register] email error:", err);
     return NextResponse.json(
-      { error: "Could not create order. Please try again or contact us." },
+      { error: "Could not save your registration. Please try again or contact us." },
       { status: 500 }
     );
   }
